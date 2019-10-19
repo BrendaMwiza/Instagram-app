@@ -32,5 +32,10 @@ class Image(models.Model):
     def search_user(cls,user_item):
         pic = cls.objects.filter(name__icontains=user_item)
 
+class Follower(models.Model):
+    user_name = models.CharField(max_length=30,default="")
+    followers = models.CharField(max_length=30)
+    profile = models.ForeignKey(Profile)
+
 
     
