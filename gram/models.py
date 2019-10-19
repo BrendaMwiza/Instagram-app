@@ -4,46 +4,33 @@ from django.db import models
 
 class Image(models.Model):
     name = models.CharField(max_length =30)
-    
-    
-#     def __str__(self):
-#         return self.name
+    description = models.TextField(max_length =60)
+    user_name = models.ForeignKey(User,on_delete=models.BASCADE, blank=True, related_name="pictures")
+    image = models.ImageField(upload_to='pictures/' null=True)
+    comment = models.TextField(blank=True)
+    likes = models.IntegerField(default=0)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
 
-#     def save_ciro(self):
-#         self.save()
+    def save_pic(self):
+        self.save()  
 
-#     def delete_ciro(self):
-#         self.save()
+    def delete_pic(cls,id):
+        pic = cls.objects.get(PrimaryKey=id)
+        pic.delete()
 
-# class Ahanu(models.Model):
-#     here = models.CharField(max_length =30)
+    @classmethod
+    def update_pic(cls,update):
+        pic = cls.objects.filter(id=id).update(id=id)
+        return pic
 
-#     def __str__(self):
-#         return self.here
+    @classmethod
+    def get_pic_by_di(cls,id):
+        pic = cls.objects.get(PrimaryKey=id)
+        return pic
 
-# class Pics(models.Model):
-#     title = models.CharField(max_length =30)
-#     description = models.TextField()
-#     ciro = models.ForeignKey(ibyiciro)
-#     hanu = models.ManyToManyField(Ahanu)
-#     pub_date = models.DateTimeField(auto_now_add=True)
-#     pic = models.ImageField(upload_to = 'pictures/',null=True)
-
-#     @classmethod
-#     def save_pic(self):
-#         self.save()
-
-
-#     @classmethod
-#     def day_pic(cls,date):
-#         image = cls.objects.filter(pub_date__date = date)
-#         return image
-
-#     @classmethod
-#     def search_by_ciro(cls,search_term):
-#         image = cls.objects.filter(ciro__name__icontains=search_term)
-#         return image
-
+    @classmethod
+    def search_user(cls,user_item):
+        pic = cls.objects.filter(name__icontains=user_item)
 
 
     
