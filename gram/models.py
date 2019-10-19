@@ -6,7 +6,7 @@ class Image(models.Model):
     name = models.CharField(max_length =30)
     description = models.TextField(max_length =60)
     user_name = models.ForeignKey(User,on_delete=models.BASCADE, blank=True, related_name="pictures")
-    image = models.ImageField(upload_to='pictures/' null=True)
+    pic = models.ImageField(upload_to='pictures/' null=True)
     comment = models.TextField(blank=True)
     likes = models.IntegerField(default=0)
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
@@ -72,6 +72,17 @@ class Profile(models.Model):
     def __str__(self):
         return self.user_name.username
 
+class Comments(models.Model):
+    user_name = models.OneToOneFiled(User, on_delete=models.CASCADE,blank=True,related_name="user_name")
+    pic = models.ForeignKey(Image, on_delete=models.CASCADE,blank=True,related_name="comment")
+    comment = models.TextField()
 
+    def save_comment(self,id):
+        self.save()
 
-    
+    def get_comment_id(self,id):
+        comment = Comments.objects.filter(Image_id=id)
+        return comment
+
+    def __str__(self):
+        return self.user_name.comment
