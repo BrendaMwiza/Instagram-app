@@ -6,7 +6,21 @@ from .email import send_welcome_email
 
 # Create your views here.
 
-def index(request):
-    return render(request,'index.html')
+def days_pic(request):
+    date = dt.date.today()
+    image = Image.objects.all()
 
- 
+    if request.method == 'POST':
+        form = Form(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            recipient = Recipients(name = name,email =email)
+            recipient.save()
+            send_welcome_email(name,email)
+
+            HttpResponseRedirect('days_pic')
+    else:
+        form = Form()
+    return render(request, 'index.html', {"date": date,"picForm":form})
+
