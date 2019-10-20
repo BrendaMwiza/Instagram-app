@@ -1,13 +1,13 @@
+# from django.http import HttpResponse,httpResponseRedirect
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,httpResponseRedirect
 from .models import Image,Profile,Comments,Follower
 from .email import send_welcome_email
-from django.contrib.auth.decorators import login_required.
-
+from django.contrib.auth.decorators import login_required
+from .forms import Form
 # Create your views here.
 
-def days_pic(request):
-    date = dt.date.today()
+def index(request):
+    # date = dt.date.today()
     image = Image.objects.all()
 
     if request.method == 'POST':
@@ -19,8 +19,8 @@ def days_pic(request):
             recipient.save()
             send_welcome_email(name,email)
 
-            HttpResponseRedirect('days_pic')
+            HttpResponseRedirect('index')
     else:
         form = Form()
-    return render(request, 'index.html', {"date": date,"picForm":form})
+    return render(request, 'index.html', {"picForm":form})
 
