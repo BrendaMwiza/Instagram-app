@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from .models import Image,Profile,Comments,Follower
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-from .forms import Form
+from .forms import Form,NewImageForm
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')
@@ -38,4 +38,4 @@ def new_pic(request):
 
     else:
         form = NewImageForm()
-    return render(request, 'new_article.html', {"form": form})
+    return render(request, 'everything/add-pic.html', {"form": form})

@@ -19,17 +19,32 @@
                 <input class="form-control" type="text" placeholder="Search" name="picture">
             </div>
             
-            <div class="col-md-3 col-md-3">
+            <div class="col-md-2 col-md-3">
+           
                 <ul>
                     <a href="{% url 'welcome' %}"><i class="fa fa-compass" aria-hidden="true" style="font-size:28px;color: rgb(31, 30, 30);"></i></a>
 
                     <a href="{% url 'welcome' %}"><i class="fa fa-heart-o" aria-hidden="true" style="font-size:28px;color: rgb(31, 30, 30);"></i></a>
 
-                    <a href="{% url 'welcome' %}"><i class="fa fa-user-o" aria-hidden="true" style="font-size:28px;color: rgb(31, 30, 30);"></i></a> 
+                    
+                    <a href="#" class="dropdown dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true" style="font-size:28px;color: rgb(31, 30, 30);"></i>
+                                <span class="caret"></span>
+                            </a>
+                        <ul class="dropdown-menu"  role="menu" style="float: right;">
+                            <li>
+                            <a href="{%url 'addPic'%}" style="font-size:16px;color: rgb(31, 30, 30);">upload image</a>
+                            </li>
+                            <li>
+                            <a href="/accounts/password/change" style="font-size:16px;color: rgb(31, 30, 30);">Change Password</a>
+                            </li>
+                            <hr>
+                            <li>
+                            <a href="/logout" style="font-size:16px;color: rgb(31, 30, 30);">Logout</a>
+                            </li>
+                        </ul>
+                    
                 </ul>
             </div>
-                
-            
         </div>
         
                 

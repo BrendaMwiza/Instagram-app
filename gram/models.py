@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Image(models.Model):
-    name = models.CharField(max_length =30)
-    description = models.TextField(max_length =60)
+    name = models.CharField(max_length =10)
+    description = models.TextField(max_length =20)
     user_name = models.ForeignKey(User,on_delete=models.CASCADE, blank=True)
     pic = models.ImageField(upload_to='pictures/', null=True)
     comment = models.TextField(blank=True)

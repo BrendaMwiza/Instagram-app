@@ -8,7 +8,7 @@ class Form(forms.Form):
 class NewImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['user_name', 'pub_date','comment','']
+        exclude = ['user_name', 'pub_date','comment','posting','likes']
         # widgets = {
         #     'pic': forms.CheckboxSelectMultiple(),
         # }
