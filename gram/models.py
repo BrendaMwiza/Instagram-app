@@ -37,7 +37,7 @@ class Image(models.Model):
 class Profile(models.Model):
     class Meta:
         db_table='profile'
-    profile_pic = models.ImageField(upload_to='pictures/',blank=True,null=True)
+    pro_pic = models.ImageField(upload_to='pictures/',blank=True,null=True)
     user_name = models.OneToOneField(User, on_delete=models.CASCADE,blank=True)
     boi = models.TextField(max_length=300,null=True,default="bio")
     follower = models.ManyToManyField(User,related_name="follower",blank=True)

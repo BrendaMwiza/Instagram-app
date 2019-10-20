@@ -23,7 +23,7 @@ def index(request):
             HttpResponseRedirect('index')
     else:
         form = Form()
-    return render(request, 'index.html', {"picForm":form})
+    return render(request, 'index.html', {"form":form})
 
 @login_required(login_url='/accounts/login/')
 def new_pic(request):
@@ -34,8 +34,31 @@ def new_pic(request):
             picture = form.save(commit=False)
             picture.user_name = current_user
             picture.save()
-        return redirect('addPic')
+        return redirect('index')
 
     else:
         form = NewImageForm()
     return render(request, 'everything/add-pic.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def getProfile(request,users=None):
+    if not users:
+        user = request.user
+        pics = Image.objects.filter(name=users)
+        return render(request,'everything/profile.html',locals())
+
+
+@login_required(login_url='/accounts/login/')
+def editProfile(request):
+    current_user = request.user_name
+    if request.method == 'POST':
+        form = UpdateProForm(request.POST,request.FILES)
+        if form.is_valid():
+            pics = form.save(commit=False)
+            pics.user_name = current_user
+            pics.save()
+        return redirect('profile')
+
+    else:
+        form = UpdateProForm()
+    return render(request,'pro_edit.html',{"form":form})

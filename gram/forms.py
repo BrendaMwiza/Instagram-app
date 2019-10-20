@@ -12,3 +12,8 @@ class NewImageForm(forms.ModelForm):
         # widgets = {
         #     'pic': forms.CheckboxSelectMultiple(),
         # }
+
+class UpdateProForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        exclude = ['follower', 'following']
