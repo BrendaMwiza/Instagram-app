@@ -13,7 +13,7 @@
         {% for pict in image_pic %}
         <div class="card" style="width: 50%;margin-left: 25%;">
             <br>
-            <span style="font-family: cursive;"><img src="{{user.profile.pro_pic.url}}" style="height: 50px; width:50px;" class="rounded-circle profile-img">      {{pict.user_name}}</span>
+            <span style="font-family: cursive;"><img src="{{pict.profiles.pro_pic.url}}" style="height: 50px; width:50px;" class="rounded-circle profile-img">      {{pict.user_name}}</span>
             <br>
             <img src="{{pict.pic.url}}" alt="images" style="height: 350px;">
             <div class="card-body">

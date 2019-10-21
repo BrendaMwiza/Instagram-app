@@ -28,11 +28,13 @@ def index(request):
 @login_required(login_url='/accounts/login/')
 def new_pic(request):
     current_user = request.user
+    profile = Profile.objects.filter(user_name=current_user).first()
     if request.method == 'POST':
         form = NewImageForm(request.POST, request.FILES)
         if form.is_valid():
             picture = form.save(commit=False)
             picture.user_name = current_user
+            picture.profiles = profile
             picture.save()
         return redirect('addPic')
 
@@ -42,11 +44,10 @@ def new_pic(request):
 
 @login_required(login_url='/accounts/login/')
 def getProfile(request,users=None):
-    image_pic = Image.objects.all()
-    if not users:
-        user = request.user
-        pics = Image.objects.filter(name=users)
-        return render(request,'everything/profile.html',locals(),{"image_pic":image_pic})
+    user = request.user
+    image_pic = Image.objects.filter(user_name=user)
+    
+    return render(request,'everything/profile.html',locals(),{"image_pic":image_pic})
 
 
 @login_required(login_url='/accounts/login/')
