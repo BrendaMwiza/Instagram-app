@@ -3,19 +3,15 @@
 {% block content %}
 <div class="container">
     <div class="row">
-    <!-- displaying  Username-->
         <div class="col-md-4">
-            <h3> {{user.username}} </h3> 
-            <button class="btn btn-danger btn-lg" action="{%url 'editProfile'%}">Edit profile</button>
-
             <img src="{{user.profile.pro_pic.url}}" alt="picture">
-            <!-- Displaying user bio -->
-            
-            <p> {{user.bio}}</p>
         </div>
-
-    <!--Display profile photo-->
-        
+        <div class="col-md-4">
+            <h3 > {{user.username}} </h3> 
+            <a href="{% url 'editProfile' %}" ><button class="btn btn-outline-primary">Edit Profile</button></a>
+            
+            <p>Bio: {{user.profile.bio}}</p>
+        </div>
     </div>
 </div>
 {% endblock %}
