@@ -65,6 +65,19 @@ def editProfile(request):
         form = UpdateProForm()
     return render(request,'everything/pro_edit.html',{"test":form})
 
+def search(request):
+    if 'picture' in request.GET and request.GET["picture"]:
+        search_term = request.GET.get("picture")
+        pictures = Pics.search_by_user_name(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'everything/search.html',{"message":message,"pictures": pictures})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'everything/search.html',{"message":message, "pictures": pictures})
+
+
 # def users(request):
 #     used = User.objects.all()
 #     accounts = {'used':used}
