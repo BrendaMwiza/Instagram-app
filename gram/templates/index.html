@@ -12,7 +12,7 @@
     <div class="container">
         {% for pict in image_pic %}
         <div class="card" style="width: 50%;margin-left: 25%;">
-            <span style="font-family: cursive;"><img src="{{user_name.profile.pro_pic.url}}" alt="profile">{{pict.user_name}}</span>
+            <span style="font-family: cursive;"><img src="{{user_name.profile.pro_pic.url}}">{{pict.user_name}}</span>
     
             <img src="{{pict.pic.url}}" alt="images" style="height: 350px;">
             <div class="card-body">

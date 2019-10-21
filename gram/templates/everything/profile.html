@@ -5,28 +5,22 @@
     <div class="row">
     <!-- displaying  Username-->
         <div class="col-md-4">
-            <h3> {{user_name.user_name}} </h3> 
-
+            <h3> {{user.username}} </h3> 
+            <img src="{{user.profile.pro_pic.url}}" alt="picture">
             <!-- Displaying user bio -->
-             {% if user.bio %}
-            <p> {{user_name.bio}}</p>
-            {%else%}
-            <p> {{user_name.user_name}} has no bio </p>
-            {% endif %}
+            
+            <p> {{user.bio}}</p>
         </div>
 
     <!--Display profile photo-->
         <div class="col-md-4">
 
-            
-
-            {% if user == current_user %}
             <form  action="{% url 'editProfile' %}" method="post" enctype = "multipart/form-data">
 
             <input type="file"  name="photo" class="form-control" required>
             <input type="submit">
             </form>
-            {% endif %}
+            
         </div>
     </div>
 </div>

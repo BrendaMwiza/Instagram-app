@@ -8,10 +8,10 @@
       {% if form.errors %}
         <p> Some Information Might be Incorrect </p>
       {% endif %}
-      <div class="panel panel-default">
+      <div class="panel panel-default card card-body " style=" background-color:aliceblue;">
 
         <div class="panel-heading">
-          <h3 class="text-center">Sign Up</h3>
+          <h2 class="text-center">Sign Up</h2>
         </div>
         <div class="panel-body">
 
@@ -19,7 +19,7 @@
             {% csrf_token %}
             {% bootstrap_form form %}
             <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+              <input type="submit" class="btn btn-success btn-sm" value="Sign Up">
             </div>
 
             <input type="hidden" name="next" value="{{next}}">
