@@ -37,8 +37,8 @@ class Image(models.Model):
 class Profile(models.Model):
     class Meta:
         db_table='profile'
-    pro_pic = models.ImageField(upload_to='pictures/',blank=True,null=True)
-    user_name = models.OneToOneField(User, on_delete=models.CASCADE,blank=True)
+    pro_pic = models.ImageField(upload_to='profile/',blank=True,null=True)
+    user_name = models.OneToOneField(User, on_delete=models.CASCADE)
     boi = models.TextField(max_length=300,null=True,default="bio")
     follower = models.ManyToManyField(User,related_name="follower",blank=True)
     following = models.ManyToManyField(User,related_name="following",blank=True)
@@ -69,7 +69,7 @@ class Profile(models.Model):
         pro = cls.objects.filter(user_name__name__icontains=profile_item)
 
     def __str__(self):
-        return self.user_name.username
+        return self.user_name.email
 
 class Follower(models.Model):
     user_name = models.CharField(max_length=30,default="")

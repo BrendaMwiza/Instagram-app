@@ -9,7 +9,7 @@ from .forms import Form,NewImageForm
 @login_required(login_url='/accounts/login/')
 def index(request):
     # date = dt.date.today()
-    image = Image.objects.all()
+    image_pic = Image.objects.all()
 
     if request.method == 'POST':
         form = Form(request.POST)
@@ -23,7 +23,7 @@ def index(request):
             HttpResponseRedirect('index')
     else:
         form = Form()
-    return render(request, 'index.html', {"form":form})
+    return render(request, 'index.html', {"NewImageForm":form,"image_pic":image_pic})
 
 @login_required(login_url='/accounts/login/')
 def new_pic(request):
@@ -34,7 +34,7 @@ def new_pic(request):
             picture = form.save(commit=False)
             picture.user_name = current_user
             picture.save()
-        return redirect('index')
+        return redirect('addPic')
 
     else:
         form = NewImageForm()
@@ -50,7 +50,7 @@ def getProfile(request,users=None):
 
 @login_required(login_url='/accounts/login/')
 def editProfile(request):
-    current_user = request.user_name
+    current_user = request.user
     if request.method == 'POST':
         form = UpdateProForm(request.POST,request.FILES)
         if form.is_valid():
@@ -61,4 +61,9 @@ def editProfile(request):
 
     else:
         form = UpdateProForm()
-    return render(request,'pro_edit.html',{"form":form})
+    return render(request,'everything/pro_edit.html',{"form":form})
+
+# def users(request):
+#     used = User.objects.all()
+#     accounts = {'used':used}
+#     return render(request,'users.html',accounts)
