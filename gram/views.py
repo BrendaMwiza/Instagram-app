@@ -42,10 +42,11 @@ def new_pic(request):
 
 @login_required(login_url='/accounts/login/')
 def getProfile(request,users=None):
+    image_pic = Image.objects.all()
     if not users:
         user = request.user
         pics = Image.objects.filter(name=users)
-        return render(request,'everything/profile.html',locals())
+        return render(request,'everything/profile.html',locals(),{"image_pic":image_pic})
 
 
 @login_required(login_url='/accounts/login/')
@@ -57,7 +58,7 @@ def editProfile(request):
             pics = form.save(commit=False)
             pics.user_name = current_user
             pics.save()
-        return redirect('editProfile')
+        return redirect('profile')
 
     else:
         form = UpdateProForm()

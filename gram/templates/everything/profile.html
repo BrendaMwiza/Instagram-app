@@ -6,6 +6,8 @@
     <!-- displaying  Username-->
         <div class="col-md-4">
             <h3> {{user.username}} </h3> 
+            <button class="btn btn-danger btn-lg" action="{%url 'editProfile'%}">Edit profile</button>
+
             <img src="{{user.profile.pro_pic.url}}" alt="picture">
             <!-- Displaying user bio -->
             
