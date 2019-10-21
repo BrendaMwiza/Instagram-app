@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from .models import Image,Profile,Comments,Follower
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-from .forms import Form,NewImageForm
+from .forms import Form,NewImageForm,UpdateProForm
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')
@@ -57,11 +57,11 @@ def editProfile(request):
             pics = form.save(commit=False)
             pics.user_name = current_user
             pics.save()
-        return redirect('profile')
+        return redirect('editProfile')
 
     else:
         form = UpdateProForm()
-    return render(request,'everything/pro_edit.html',{"form":form})
+    return render(request,'everything/pro_edit.html',{"test":form})
 
 # def users(request):
 #     used = User.objects.all()
