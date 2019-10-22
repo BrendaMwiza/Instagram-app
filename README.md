@@ -3,7 +3,7 @@
 ## By **Brenda Mwiza**
 
 ## Link to live site
-You can view the site here >>
+You can view the site here >> https://instapicscom.herokuapp.com/
 
 ## Description
 This is an application that was designed to look like instagram web app. and it helps users 
