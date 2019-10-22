@@ -66,19 +66,14 @@ def editProfile(request):
     return render(request,'everything/pro_edit.html',{"test":form})
 
 def search(request):
-    if 'picture' in request.GET and request.GET["picture"]:
-        search_term = request.GET.get("picture")
-        pictures = Pics.search_by_user_name(search_term)
+    if 'user_name' in request.GET and request.GET["user_name"]:
+        search_term = request.GET.get("user_name")
+        users = User.search_by_user_name(search_term)
         message = f"{search_term}"
 
-        return render(request, 'everything/search.html',{"message":message,"pictures": pictures})
+        return render(request, 'everything/search.html',{"message":message,"users": users})
 
-    else:
-        message = "You haven't searched for any term"
-        return render(request, 'everything/search.html',{"message":message, "pictures": pictures})
-
-
-# def users(request):
-#     used = User.objects.all()
-#     accounts = {'used':used}
-#     return render(request,'users.html',accounts)
+def users(request):
+    used = User.objects.all()
+    accounts = {'used':used}
+    return render(request,'profile.html',accounts)
